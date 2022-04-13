@@ -84,7 +84,7 @@ FReply FWakaTimeForUE4Module::SetDesigner()
 
 FReply FWakaTimeForUE4Module::SaveData()
 {
-	UE_LOG(LogTemp, Warning, TEXT("WakaTime: Saving settings"));
+	UE_LOG(LogTemp, Display, TEXT("WakaTime: Saving settings"));
 	apiKey = TCHAR_TO_UTF8(*(apiKeyBlock.Get().GetText().ToString()));
 	std::ofstream saveFile;
 	saveFile.open("wakatimeSaveData.txt");
@@ -114,7 +114,7 @@ string GetProjectName()
 
 void SendHeartbeat(bool fileSave, std::string filePath)
 {
-	UE_LOG(LogTemp, Warning, TEXT("WakaTime: Sending Heartbeat"));
+	UE_LOG(LogTemp, Display, TEXT("WakaTime: Sending Heartbeat"));
 
 	string command(" /C start /B wakatime --entity \"" + filePath + "\" ");
 	if (apiKey != "")
@@ -166,7 +166,7 @@ void SendHeartbeat(bool fileSave, std::string filePath)
 
 	if (success)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("WakaTime: Heartbeat successfully sent."));
+		UE_LOG(LogTemp, Display, TEXT("WakaTime: Heartbeat successfully sent."));
 	}
 	else
 	{
@@ -197,18 +197,18 @@ void FWakaTimeForUE4Module::StartupModule()
 	{
 		if (line == "Developer")
 		{
-			UE_LOG(LogTemp, Warning, TEXT("WakaTime: Position set to Developer"));
+			UE_LOG(LogTemp, Display, TEXT("WakaTime: Position set to Developer"));
 			SetDeveloper();
 		}
 		else if (line == "Designer")
 		{
-			UE_LOG(LogTemp, Warning, TEXT("WakaTime: Position set to Designer"));
+			UE_LOG(LogTemp, Display, TEXT("WakaTime: Position set to Designer"));
 			SetDesigner();
 		}
 
 		if (std::getline(infile, line))
 		{
-			UE_LOG(LogTemp, Warning, TEXT("WakaTime: Api key found."));
+			UE_LOG(LogTemp, Display, TEXT("WakaTime: Api key found."));
 			apiKey = line;
 			apiKeyBlock.Get().SetText(FText::FromString(FString(UTF8_TO_TCHAR(apiKey.c_str()))));
 
@@ -292,12 +292,12 @@ TSharedRef<FSlateStyleSet> FWakaTimeForUE4Module::Create()
 	if (FPaths::DirectoryExists(FPaths::ProjectPluginsDir() / "WakaTimeForUE4-main"))
 	{
 		projectDirectory = (FPaths::ProjectPluginsDir() / "WakaTimeForUE4-main" / "Resources");
-		UE_LOG(LogTemp, Warning, TEXT("WakaTime: Main detected"));
+		UE_LOG(LogTemp, Display, TEXT("WakaTime: Main detected"));
 	}
 	else if (FPaths::DirectoryExists(FPaths::ProjectPluginsDir() / "WakaTimeForUE4-release"))
 	{
 		projectDirectory = (FPaths::ProjectPluginsDir() / "WakaTimeForUE4-release" / "Resources");
-		UE_LOG(LogTemp, Warning, TEXT("WakaTime: Release detected"));
+		UE_LOG(LogTemp, Display, TEXT("WakaTime: Release detected"));
 	}
 	else
 	{
