@@ -1,16 +1,17 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
-
 #pragma once
 
 #include <string>
 #include <Runtime/SlateCore/Public/Styling/SlateStyle.h>
+#include "EditorStyleSet.h"
+
+DECLARE_LOG_CATEGORY_EXTERN(LogWakaTime, Log, All);
 
 class FWakaTimeForUEModule : public IModuleInterface
 {
 public:
 	// Module methods
 
-	
+
 	/// <summary>
 	///	Called when the module is initiated, in this case PostEngineInit
 	/// </summary>
@@ -23,7 +24,7 @@ public:
 
 
 	// Initialization methods
-	
+
 
 	/// <summary>
 	///	Assigns global variables like User home path, processor architecture and wakatime exe name
@@ -50,7 +51,7 @@ public:
 
 	// UI methods
 
-	
+
 	/// <summary>
 	///	Creates the wakatime icon which will reside in the toolbar
 	/// </summary>
@@ -73,7 +74,7 @@ public:
 	/// </summary>
 	FReply SaveData();
 
-	
+
 	// Lifecycle methods
 
 
@@ -85,7 +86,7 @@ public:
 	/// <param name="Activity"> activity being performed by the user while sending the heartbeat; e.g. coding, designing, debugging, etc. </param>
 	void SendHeartbeat(bool bFileSave, std::string FilePath, std::string Activity);
 
-	
+
 	// Event methods
 
 	/// <summary>
@@ -142,7 +143,11 @@ public:
 		TEXT("WakatimeEditor"),
 		NSLOCTEXT("Wakatime", "WakatimeEditor", "Wakatime Plugin"),
 		NAME_None,
+#if ENGINE_MAJOR_VERSION >= 5 && ENGINE_MINOR_VERSION >= 1
+		FAppStyle::GetAppStyleSetName()
+#else // TheAshenWolf(GetStyleSetName is deprecated as of UE5.1)
 		FEditorStyle::GetStyleSetName()
+#endif
 	) { }
 
 	/// <summary>
@@ -150,6 +155,6 @@ public:
 	/// </summary>
 	virtual void RegisterCommands() override;
 
-	
+
 	TSharedPtr<FUICommandInfo> WakaTimeSettingsCommand;
 };

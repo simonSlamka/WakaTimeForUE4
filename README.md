@@ -1,6 +1,6 @@
 # WakaTimeForUE
 
-![plugin version](https://img.shields.io/badge/version-1.2.3-blue) ![Unreal Engine version](https://img.shields.io/badge/Unreal%20Engine%20version-4.26+-blue) ![Platform support](https://img.shields.io/badge/Platform_support-Windows-blue)
+![plugin version](https://img.shields.io/badge/version-1.2.4-blue) ![Unreal Engine version](https://img.shields.io/badge/Unreal%20Engine%20version-4.26+-blue) ![Platform support](https://img.shields.io/badge/Platform_support-Windows-blue)
 
 ---
 
@@ -10,7 +10,8 @@
    2.1. Your folder structure should be ...\Engine\Plugins\WakaTimeForUE\
    2.2. Within this folder resides WakaTimeForUE.uplugin and other files
 3. Run the engine
-4. If you already used wakatime elsewhere, your api key gets loaded. If not, you get prompted by a window.
+4. If you already used wakatime elsewhere, your api key gets loaded. If not, you get prompted by a window.  
+   4.1. In recent changes, API key on the website appears in format `waka_[apiKey]`, in order for this to work, remove the `waka_` prefix.
 
 ### Notice
 This is my first ever project in C++, so it is definitely not perfect.  
@@ -28,17 +29,5 @@ A: Short answer: Yes. Long answer: It should. You might need to rebuild the plug
 
 ---
 ## Contributors
-I'd like to thank all of these people for what they did. They helped me to get this plugin to the stage where it is right now.
-
-<a href="https://github.com/ghost">
-    <img src="https://github.com/ghost.png" width="64" height="64" alt="ghost" title="A person who helped us solve many warnings regarding macros.">
-</a>
-
-<a href="https://github.com/simonSlamka">
-    <img src="https://github.com/simonSlamka.png" width="64" height="64" alt="simonSlamka" title="simonSlamka - Helped me and motivated me to finish the version 1.2.0">
-</a>
-
-<a href="https://github.com/Coolicky">
-    <img src="https://github.com/Coolicky.png" width="64" height="64" alt="Coolicky" title="Coolicky - Updated env variables for better compatibility with different permissions and improved compatibility with other wakatime plugins">
-</a>
+Thank you to all of you. You have been a huge help.
 
